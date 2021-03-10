@@ -1,9 +1,31 @@
-extends layout
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Jade
+  body
+    include ./header.jade
+    form(action='demo_form.php' method='get' name='myform')
+    | 请输入版本: 
+    input(type='search' name='search1' id='searchTxt')
+    input(type='submit' value='搜索' onclick="showDump()")
+    ol#list
 
-block content
-  h1= title
-  ol
-    each record in records
-      li
-        a(href='view/' + record.id)
-          = 'v' + record.version + ' ' + record.time.toLocaleString()
+    script.
+      let list = !{JSON.stringify(records)};
+      function showDump(){
+      console.log(document.getElementById("list"))
+      let liList = ''
+      list.forEach(v => {
+        var searchValue = document.getElementById("searchTxt").value;
+        if(searchValue === "" || v.version === searchValue){
+          liList += `<li><a href=${'view/' + v.id}>${'v' + v.version + ' ' + v.time.toLocaleString()}</a></li>`
+        }
+      })
+      document.getElementById("list").innerHTML = liList
+      }
+      showDump()
+    include ./footer.jade
+
+
+
