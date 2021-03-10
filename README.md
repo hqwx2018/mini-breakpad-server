@@ -16,3 +16,15 @@ Minimum collecting server for crash reports sent by
 * `grunt`
 * Put your breakpad symbols under `pool/symbols/PRODUCT_NAME`
 * `node lib/app.js`
+
+
+### Notice
+win10下运行mini-breakpad-server
+1.nvm use 6.9.2 (node version 6.9.2)
+2.minidump 0.11.0
+
+
+Linux下运行mini-breakpad-server
+1.nvm use 8.10.0 (node version 8.10.0)
+2.minidump 0.3.0
+
